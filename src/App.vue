@@ -475,7 +475,10 @@ export default {
                             this.nextQuestion();
                           },
                         },
-                      ]
+                      ],
+                      {
+                        defaultAction: 0,
+                      }
                     );
                   },
                 });
@@ -495,7 +498,10 @@ export default {
                             this.nextQuestion();
                           },
                         },
-                      ]
+                      ],
+                      {
+                        defaultAction: 0,
+                      }
                     );
                   },
                 });
@@ -539,7 +545,10 @@ export default {
                             this.nextQuestion();
                           },
                         },
-                      ]
+                      ],
+                      {
+                        defaultAction: 0,
+                      }
                     );
                   },
                 });
@@ -562,7 +571,10 @@ export default {
                             this.nextQuestion();
                           },
                         },
-                      ]
+                      ],
+                      {
+                        defaultAction: 0,
+                      }
                     );
                   },
                 });
@@ -611,7 +623,10 @@ export default {
                             this.nextQuestion();
                           },
                         },
-                      ]
+                      ],
+                      {
+                        defaultAction: 0,
+                      }
                     );
                   },
                 });
@@ -620,15 +635,22 @@ export default {
                   title: choice,
                   type: "normal",
                   handler: () => {
-                    this.$alert.present("Correct", "The answer is " + answer, [
-                      {
-                        title: "Next Question",
-                        type: "normal",
-                        handler: () => {
-                          this.nextQuestion();
+                    this.$alert.present(
+                      "Correct",
+                      "The answer is " + answer,
+                      [
+                        {
+                          title: "Next Question",
+                          type: "normal",
+                          handler: () => {
+                            this.nextQuestion();
+                          },
                         },
-                      },
-                    ]);
+                      ],
+                      {
+                        defaultAction: 0,
+                      }
+                    );
                   },
                 });
               }
@@ -666,7 +688,10 @@ export default {
                             this.nextQuestion();
                           },
                         },
-                      ]
+                      ],
+                      {
+                        defaultAction: 0,
+                      }
                     );
                   },
                 });
@@ -686,7 +711,10 @@ export default {
                             this.nextQuestion();
                           },
                         },
-                      ]
+                      ],
+                      {
+                        defaultAction: 0,
+                      }
                     );
                   },
                 });
