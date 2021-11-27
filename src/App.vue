@@ -549,12 +549,8 @@ export default {
       } else {
         // Compounds
         let obj = this.compounds[this.random(this.compounds.length)];
-        let aspects = Object.keys(obj);
+        let aspects = ['soluable','colour'];
         // console.log(aspects);
-        aspects.splice(aspects.indexOf("name"), 1);
-        if (aspects["info"]) {
-          aspects.splice(aspects.indexOf("info"), 1);
-        }
         // console.log(aspects);
         let aspect = aspects[this.random(aspects.length)];
         console.log(aspect)
