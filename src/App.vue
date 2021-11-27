@@ -431,7 +431,7 @@ export default {
     },
     nextQuestion() {
       var question, answer, choices, actions, x;
-      if (this.random(2) == 0 && 1 == 0) {
+      if (this.random(2) == 0) {
         // Ions
         let obj = this.ions[this.random(this.ions.length)];
         let aspects = ["solution", "flame"];
