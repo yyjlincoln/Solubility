@@ -12,323 +12,338 @@ export default {
     compounds: [
       {
         name: "Barium Phosphate",
-        soluable: false,
+        soluble: "No",
         colour: "White",
       },
       {
         name: "Barium Sulfate",
-        soluable: false,
+        soluble: "No",
         colour: "White",
       },
       {
         name: "Barium Carbonate",
-        soluable: false,
+        soluble: "No",
         colour: "White",
       },
       {
         name: "Barium Hydroxide",
-        soluable: false, // Slightly soluable
+        soluble: "Slightly", // Slightly soluble
         colour: "White",
-        info: "Slightly soluable",
+        info: "Slightly soluble",
       },
       {
         name: "Barium Chloride",
-        soluable: true,
+        soluble: "Yes",
         colour: "No precipitate",
       },
       {
         name: "Barium Bromide",
-        soluable: true,
+        soluble: "Yes",
         colour: "No precipitate",
       },
       {
         name: "Barium Iodide",
-        soluable: true,
+        soluble: "Yes",
         colour: "No precipitate",
       },
       {
         name: "Barium Acetate",
-        soluable: true,
+        soluble: "Yes",
         colour: "No precipitate",
       },
       {
         name: "Calcium Phosphate",
-        soluable: false,
+        soluble: "No",
         colour: "White",
       },
       {
         name: "Calcium Sulfate",
-        soluable: false, // Slightly
+        soluble: "Slightly", // Slightly
         colour: "White",
-        info: "Slightly soluable",
+        info: "Slightly soluble",
       },
       {
         name: "Calcium Carbonate",
-        soluable: false,
+        soluble: "No",
         colour: "White",
       },
       {
         name: "Calcium Hydroxide",
-        soluable: false, // Slightly
+        soluble: "Slightly", // Slightly
         colour: "White",
-        info: "Slightly soluable",
+        info: "Slightly soluble",
       },
       {
         name: "Calcium Chloride",
-        soluable: true,
+        soluble: "Yes",
         colour: "No precipitate",
       },
       {
         name: "Calcium Bromide",
-        soluable: true,
+        soluble: "Yes",
         colour: "No precipitate",
       },
       {
         name: "Calcium Iodide",
-        soluable: true,
+        soluble: "Yes",
         colour: "No precipitate",
       },
       {
         name: "Calcium Acetate",
-        soluable: true,
+        soluble: "Yes",
         colour: "No precipitate",
       },
       {
         name: "Magnesium Phosphate",
-        soluable: false,
+        soluble: "No",
         colour: "White",
       },
       {
         name: "Magnesium Sulfate",
-        soluable: true,
+        soluble: "Yes",
         colour: "No precipitate",
       },
       {
         name: "Magnesium Carbonate",
-        soluable: false,
+        soluble: "No",
         colour: "White",
       },
       {
         name: "Magnesium Hydroxide",
-        soluable: false,
+        soluble: "No",
         colour: "White",
       },
       {
         name: "Magnesium Chloride",
-        soluable: true,
+        soluble: "Yes",
         colour: "No precipitate",
       },
       {
         name: "Magnesium Bromide",
-        soluable: true,
+        soluble: "Yes",
         colour: "No precipitate",
       },
       {
         name: "Magnesium Iodide",
-        soluable: true,
+        soluble: "Yes",
         colour: "No precipitate",
       },
       {
         name: "Magnesium Acetate",
-        soluable: true,
+        soluble: "Yes",
         colour: "No precipitate",
       },
       {
         name: "Lead (II) Phosphate",
-        soluable: false,
+        soluble: "No",
         colour: "White",
       },
       {
         name: "Lead (II) Sulfate",
-        soluable: false,
+        soluble: "No",
         colour: "White",
       },
       {
         name: "Lead (II) Carbonate",
-        soluable: false,
+        soluble: "No",
         colour: "White",
       },
       {
         name: "Lead (II) Hydroxide",
-        soluable: false,
+        soluble: "No",
         colour: "White",
       },
       {
         name: "Lead (II) Chloride",
-        soluable: false,
+        soluble: "Slightly",
         colour: "White",
-        info: "Slightly soluable",
+        info: "Slightly soluble",
       },
       {
         name: "Lead (II) Bromide",
-        soluable: false,
+        soluble: "Slightly",
         colour: "White",
-        info: "Slightly soluable",
+        info: "Slightly soluble",
       },
       {
         name: "Lead (II) Iodide",
-        soluable: false,
+        soluble: "No",
         colour: "Yellow",
       },
       {
         name: "Lead (II) Acetate",
-        soluable: true,
+        soluble: "Yes",
         colour: "No precipitate",
       },
       {
         name: "Copper (II) Phosphate",
-        soluable: false,
+        soluble: "No",
         colour: "Blue",
       },
       {
         name: "Copper (II) Sulfate",
-        soluable: true,
+        soluble: "Yes",
         // colour: "Blue",
         colour: "No precipitate",
       },
       {
         name: "Copper (II) Carbonate",
-        soluable: false,
+        soluble: "No",
         colour: "Green",
       },
       {
         name: "Copper (II) Hydroxide",
-        soluable: false,
+        soluble: "No",
         colour: "Blue",
       },
       {
         name: "Copper (II) Chloride",
-        soluable: true,
+        soluble: "Yes",
         // colour: "Blue",
         colour: "No precipitate",
       },
       {
         name: "Copper (II) Bromide",
-        soluable: true,
+        soluble: "Yes",
         // colour: "Blue",
         colour: "No precipitate",
       },
       {
+        name: "Copper (II) Iodide",
+        soluble: "Unstable",
+        colour: "Unstable",
+      },
+      {
         name: "Copper (II) Acetate",
-        soluable: true,
+        soluble: "Yes",
         // colour: "Blue",
         colour: "No precipitate",
       },
       {
         name: "Iron (II) Phosphate",
-        soluable: false,
+        soluble: "No",
         colour: "Green",
       },
       {
         name: "Iron (II) Sulfate",
-        soluable: true,
+        soluble: "Yes",
         // colour: "Green",
         colour: "No precipitate",
       },
       {
         name: "Iron (II) Carbonate",
-        soluable: false,
+        soluble: "No",
         colour: "Grey",
       },
       {
         name: "Iron (II) Hydroxide",
-        soluable: false,
+        soluble: "No",
         colour: "Green",
       },
       {
         name: "Iron (II) Chloride",
-        soluable: true,
+        soluble: "Yes",
         // colour: "Green",
         colour: "No precipitate",
       },
       {
         name: "Iron (II) Bromide",
-        soluable: true,
+        soluble: "Yes",
         // colour: "Green",
         colour: "No precipitate",
       },
       {
         name: "Iron (II) Iodide",
-        soluable: true,
+        soluble: "Yes",
         // colour: "Green",
         colour: "No precipitate",
       },
       {
         name: "Iron (II) Acetate",
-        soluable: true,
+        soluble: "Yes",
         // colour: "Green",
         colour: "No precipitate",
       },
       {
         name: "Iron (III) Phosphate",
-        soluable: false,
+        soluble: "No",
         colour: "Yellow",
       },
       {
         name: "Iron (III) Sulfate",
-        soluable: true,
+        soluble: "Yes",
         // colour: "Yellow",
         colour: "No precipitate",
       },
       {
+        name: "Iron (III) Carbonate",
+        soluble: "Unstable",
+        colour: "Unstable",
+      },
+      {
         name: "Iron (III) Hydroxide",
-        soluable: false,
+        soluble: "No",
         colour: "Brown",
       },
       {
         name: "Iron (III) Chloride",
-        soluable: true,
+        soluble: "Yes",
         // colour: "Brown",
         colour: "No precipitate",
       },
       {
         name: "Iron (III) Bromide",
-        soluable: true,
+        soluble: "Yes",
         // colour: "Brown",
         colour: "No precipitate",
       },
       {
+        name: "Iron (III) Iodide",
+        soluble: "Unstable",
+        colour: "Unstable",
+      },
+      {
         name: "Iron (III) Acetate",
-        soluable: false,
+        soluble: "Slightly",
         colour: "Brown",
-        info: "Slightly soluable",
+        info: "Slightly soluble",
       },
       {
         name: "Silver Phosphate",
-        soluable: false,
+        soluble: "No",
         colour: "Yellow",
       },
       {
         name: "Silver Sulfate",
-        soluable: false,
+        soluble: "Slightly",
         colour: "White",
-        info: "Slightly soluable",
+        info: "Slightly soluble",
       },
       {
         name: "Silver Carbonate",
-        soluable: false,
+        soluble: "No",
         colour: "Yellow",
       },
       {
         name: "Silver Chloride",
-        soluable: false,
+        soluble: "No",
         colour: "White",
       },
       {
         name: "Silver Bromide",
-        soluable: false,
+        soluble: "No",
         colour: "Yellow",
       },
       {
         name: "Silver Iodide",
-        soluable: false,
+        soluble: "No",
         colour: "Yellow",
       },
       {
         name: "Silver Acetate",
-        soluable: false,
+        soluble: "Slightly",
         colour: "White",
-        info: "Slightly soluable",
+        info: "Slightly soluble",
       },
     ],
     ions: [
@@ -566,16 +581,16 @@ export default {
       } else {
         // Compounds
         let obj = this.compounds[this.random(this.compounds.length)];
-        let aspects = ["soluable", "colour"];
+        let aspects = ["soluble", "colour"];
         // console.log(aspects);
         // console.log(aspects);
         let aspect = aspects[this.random(aspects.length)];
         console.log(aspect);
         // console.log(aspect);
         switch (aspect) {
-          case "soluable":
-            question = obj.name + " is soluable.";
-            answer = String(obj.soluable);
+          case "soluble":
+            question = obj.name + " is soluble.";
+            answer = String(obj.soluble);
             choices = this.shuffle(this.getChoices(false, aspect));
             actions = [];
             for (x in choices) {
