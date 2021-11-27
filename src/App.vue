@@ -365,7 +365,7 @@ export default {
       {
         name: "Lead (II)",
         solution: "Colourless",
-        flame: "No characteristic flame colour",
+        flame: "Gray-White",
       },
       {
         name: "Copper (II)",
