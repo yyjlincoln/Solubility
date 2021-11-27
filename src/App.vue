@@ -389,6 +389,91 @@ export default {
         flame: "No characteristic flame colour",
       },
     ],
+    cations: [
+      {
+        name: "Lead (II)",
+        hcl: "White precipitate",
+        h2so4: "No reaction",
+        naoh: "No reaction",
+      },
+      {
+        name: "Silver",
+        hcl: "White precipitate",
+        h2so4: "No reaction",
+        naoh: "No reaction",
+      },
+      {
+        name: "Barium",
+        hcl: "No reaction",
+        h2so4: "White precipitate",
+        naoh: "No reaction",
+      },
+      {
+        name: "Calcium",
+        hcl: "No reaction",
+        h2so4: "White precipitate",
+        naoh: "No reaction",
+      },
+      {
+        name: "Magnesium (II)",
+        hcl: "No reaction",
+        h2so4: "No reaction",
+        naoh: "No reaction",
+      },
+      {
+        name: "Copper (II)",
+        hcl: "No reaction",
+        h2so4: "No reaction",
+        naoh: "Pale-blue precipitate",
+      },
+      {
+        name: "Iron (II)",
+        hcl: "No reaction",
+        h2so4: "No reaction",
+        naoh: "Green precipitate",
+      },
+      {
+        name: "Iron (III)",
+        hcl: "No reaction",
+        h2so4: "No reaction",
+        naoh: "Brown precipitate",
+      },
+    ],
+    anions: [
+      {
+        name: "Carbonate",
+        ph: ">7",
+      },
+      {
+        name: "Acetate",
+        ph: ">7",
+      },
+      {
+        name: "Hydroxide",
+        ph: ">7",
+      },
+      {
+        name: "Phosphate",
+        ph: ">7",
+      },
+      {
+        name: "Sulfate",
+        ph: "=7",
+      },
+      {
+        name: "Chloride",
+        ph: "=7",
+      },
+      {
+        name: "Bromide",
+        ph: "=7",
+      },
+      {
+        name: "Iodide",
+        ph: "=7",
+      },
+      // [TODO] add more reactions
+    ],
   }),
   mounted() {
     this.$alert.present(
@@ -412,7 +497,24 @@ export default {
           },
         },
         {
-          title: "Both",
+          title: "Cation Reactions & Identification",
+          type: "normal",
+          handler: () => {
+            this.preferredMode = "cations";
+            this.nextQuestion();
+          },
+        },
+        {
+          // title: "Anion Reactions & Identification",
+          title: "Anion pH",
+          type: "normal",
+          handler: () => {
+            this.preferredMode = "anions";
+            this.nextQuestion();
+          },
+        },
+        {
+          title: "All",
           type: "normal",
           handler: () => {
             this.nextQuestion();
@@ -420,7 +522,7 @@ export default {
         },
       ],
       {
-        defaultAction: 2,
+        defaultAction: 4,
       }
     );
     // this.nextQuestion();
@@ -481,6 +583,7 @@ export default {
                 ],
                 {
                   defaultAction: 0,
+                  defaultEscapeAction: 0,
                 }
               );
             },
@@ -504,6 +607,7 @@ export default {
                 ],
                 {
                   defaultAction: 0,
+                  defaultEscapeAction: 0,
                 }
               );
             },
@@ -517,12 +621,14 @@ export default {
           this.nextQuestion();
         },
       });
-      this.$alert.present("Question", question, actions);
+      this.$alert.present("Question", question, actions, {
+        defaultEscapeAction: actions.length - 1,
+      });
     },
     nextQuestion() {
       var question, answer, choices, obj, aspects, aspect;
-      var modes = ["ions", "compounds", "cations"];
-      let mode = modes[this.random(2)];
+      var modes = ["ions", "compounds", "cations", "anions"];
+      let mode = modes[this.random(4)];
       if (this.preferredMode != null) {
         mode = this.preferredMode;
       }
@@ -600,6 +706,79 @@ export default {
               );
               break;
           }
+          break;
+        case "cations":
+          obj = this.cations[this.random(this.cations.length)];
+          aspects = ["hcl", "h2so4", "naoh"];
+          aspect = aspects[this.random(aspects.length)];
+          switch (aspect) {
+            case "hcl":
+              question =
+                "Outline the expected observation if " +
+                obj.name +
+                " is reacted with hydrochloric acid.";
+              answer = obj.hcl;
+              choices = this.shuffle(this.getChoices(this.cations, aspect));
+              this.showQuestion(
+                question,
+                choices,
+                answer,
+                "Correct. " + answer,
+                "No, we should expect " + answer
+              );
+              break;
+            case "h2so4":
+              question =
+                "Outline the expected observation if " +
+                obj.name +
+                " is reacted with sulfuric acid.";
+              answer = obj.h2so4;
+              choices = this.shuffle(this.getChoices(this.cations, aspect));
+              this.showQuestion(
+                question,
+                choices,
+                answer,
+                "Correct. " + answer,
+                "No, we should expect " + answer
+              );
+              break;
+            case "naoh":
+              question =
+                "Outline the expected observation if " +
+                obj.name +
+                " is reacted with sodium hydroxide.";
+              answer = obj.naoh;
+              choices = this.shuffle(this.getChoices(this.cations, aspect));
+              this.showQuestion(
+                question,
+                choices,
+                answer,
+                "Correct. " + answer,
+                "No, we should expect " + answer
+              );
+              break;
+          }
+          break;
+        case "anions":
+          obj = this.anions[this.random(this.anions.length)];
+          // aspects = ["ph", "hno3", "feno33", "bano32", "agno3"]; // TODO
+          aspects = ["ph"];
+          aspect = aspects[this.random(aspects.length)];
+          switch (aspect) {
+            case "ph":
+              question = "What is the pH for " + obj.name + "?";
+              answer = obj.ph;
+              choices = this.shuffle(this.getChoices(this.anions, aspect));
+              this.showQuestion(
+                question,
+                choices,
+                answer,
+                "Correct. pH" + answer,
+                "No, we should expect pH" + answer
+              );
+              break;
+          }
+          break;
       }
     },
   },
