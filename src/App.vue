@@ -399,9 +399,9 @@ export default {
         for (var index in this.compounds) {
           var compound = this.compounds[index];
           // console.log(ion[aspect])
-          if (compound[aspect]!=undefined && res.includes(compound[aspect]) == false) {
+          if (compound[aspect]!=undefined && res.includes(String(compound[aspect])) == false) {
             // console.log(ion[aspect])
-            res.push(compound[aspect]);
+            res.push(String(compound[aspect]));
           }
         }
         console.log(res);
@@ -558,7 +558,7 @@ export default {
         switch (aspect) {
           case "soluable":
             question = obj.name + " is soluable.";
-            answer = obj.soluable;
+            answer = String(obj.soluable);
             choices = this.shuffle(this.getChoices(false, aspect));
             actions = [];
             for (x in choices) {
