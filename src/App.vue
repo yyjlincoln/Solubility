@@ -345,12 +345,12 @@ export default {
       {
         name: "Magnesium",
         solution: "Colourless",
-        flame: "No",
+        flame: "No characteristic flame colour",
       },
       {
         name: "Lead (II)",
         solution: "Colourless",
-        flame: "No",
+        flame: "No characteristic flame colour",
       },
       {
         name: "Copper (II)",
@@ -370,7 +370,7 @@ export default {
       {
         name: "Silver",
         solution: "Colourless",
-        flame: "No",
+        flame: "No characteristic flame colour",
       },
     ],
   }),
