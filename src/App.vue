@@ -9,6 +9,7 @@ export default {
   name: "App",
   components: {},
   data: () => ({
+    preferredMode: null,
     compounds: [
       {
         name: "Barium Phosphate",
@@ -390,7 +391,39 @@ export default {
     ],
   }),
   mounted() {
-    this.nextQuestion();
+    this.$alert.present(
+      "Mode selection",
+      "Which questions should be in the quiz?",
+      [
+        {
+          title: "Flame Tests & Solution Colours",
+          type: "normal",
+          handler: () => {
+            this.preferredMode = "ions";
+            this.nextQuestion();
+          },
+        },
+        {
+          title: "Solubility & Precipitate Colours",
+          type: "normal",
+          handler: () => {
+            this.preferredMode = "compounds";
+            this.nextQuestion();
+          },
+        },
+        {
+          title: "Both",
+          type: "normal",
+          handler: () => {
+            this.nextQuestion();
+          },
+        },
+      ],
+      {
+        defaultAction: 2,
+      }
+    );
+    // this.nextQuestion();
   },
   methods: {
     random(max) {
@@ -446,7 +479,13 @@ export default {
     },
     nextQuestion() {
       var question, answer, choices, actions, x;
-      if (this.random(2) == 0) {
+      let mode = this.random(2);
+      if (this.preferredMode == "ions") {
+        mode = 0;
+      } else if (this.preferredMode == "compounds") {
+        mode = 1;
+      }
+      if (mode == 0) {
         // Ions
         let obj = this.ions[this.random(this.ions.length)];
         let aspects = ["solution", "flame"];
