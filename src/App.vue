@@ -387,7 +387,7 @@ export default {
         for (var ionIndex in this.ions) {
           var ion = this.ions[ionIndex];
           // console.log(ion[aspect])
-          if (ion[aspect]!=undefined && res.includes(ion[aspect]) == false) {
+          if (ion[aspect] != undefined && res.includes(ion[aspect]) == false) {
             // console.log(ion[aspect])
             res.push(ion[aspect]);
           }
@@ -399,7 +399,10 @@ export default {
         for (var index in this.compounds) {
           var compound = this.compounds[index];
           // console.log(ion[aspect])
-          if (compound[aspect]!=undefined && res.includes(String(compound[aspect])) == false) {
+          if (
+            compound[aspect] != undefined &&
+            res.includes(String(compound[aspect])) == false
+          ) {
             // console.log(ion[aspect])
             res.push(String(compound[aspect]));
           }
@@ -428,7 +431,7 @@ export default {
     },
     nextQuestion() {
       var question, answer, choices, actions, x;
-      if (this.random(2) == 0 && 1==0) {
+      if (this.random(2) == 0 && 1 == 0) {
         // Ions
         let obj = this.ions[this.random(this.ions.length)];
         let aspects = ["solution", "flame"];
@@ -483,6 +486,13 @@ export default {
                 });
               }
             }
+            actions.push({
+              title: "Skip",
+              type: "destructive",
+              handler: () => {
+                this.nextQuestion();
+              },
+            });
             this.$alert.present("Question", question, actions);
             break;
           case "flame":
@@ -543,17 +553,24 @@ export default {
                 });
               }
             }
+            actions.push({
+              title: "Skip",
+              type: "destructive",
+              handler: () => {
+                this.nextQuestion();
+              },
+            });
             this.$alert.present("Question", question, actions);
             break;
         }
       } else {
         // Compounds
         let obj = this.compounds[this.random(this.compounds.length)];
-        let aspects = ['soluable','colour'];
+        let aspects = ["soluable", "colour"];
         // console.log(aspects);
         // console.log(aspects);
         let aspect = aspects[this.random(aspects.length)];
-        console.log(aspect)
+        console.log(aspect);
         // console.log(aspect);
         switch (aspect) {
           case "soluable":
@@ -588,30 +605,31 @@ export default {
                   title: choice,
                   type: "normal",
                   handler: () => {
-                    this.$alert.present(
-                      "Correct",
-                      "The answer is " + answer,
-                      [
-                        {
-                          title: "Next Question",
-                          type: "normal",
-                          handler: () => {
-                            this.nextQuestion();
-                          },
+                    this.$alert.present("Correct", "The answer is " + answer, [
+                      {
+                        title: "Next Question",
+                        type: "normal",
+                        handler: () => {
+                          this.nextQuestion();
                         },
-                      ]
-                    );
+                      },
+                    ]);
                   },
                 });
               }
             }
+            actions.push({
+              title: "Skip",
+              type: "destructive",
+              handler: () => {
+                this.nextQuestion();
+              },
+            });
             this.$alert.present("Question", question, actions);
             break;
           case "colour":
             question =
-              "What is the colour of " +
-              obj.name +
-              " precipitate, if any?";
+              "What is the colour of " + obj.name + " precipitate, if any?";
             answer = obj.colour;
             choices = this.shuffle(this.getChoices(false, aspect));
             actions = [];
@@ -624,10 +642,7 @@ export default {
                   handler: () => {
                     this.$alert.present(
                       "Incorrect",
-                      "The colour of " +
-                        obj.name +
-                        " should be: " +
-                        answer,
+                      "The colour of " + obj.name + " should be: " + answer,
                       [
                         {
                           title: "Next Question",
@@ -647,10 +662,7 @@ export default {
                   handler: () => {
                     this.$alert.present(
                       "Correct",
-                      "The colour of " +
-                        obj.name +
-                        " is " +
-                        answer,
+                      "The colour of " + obj.name + " is " + answer,
                       [
                         {
                           title: "Next Question",
@@ -665,6 +677,13 @@ export default {
                 });
               }
             }
+            actions.push({
+              title: "Skip",
+              type: "destructive",
+              handler: () => {
+                this.nextQuestion();
+              },
+            });
             this.$alert.present("Question", question, actions);
             break;
         }
