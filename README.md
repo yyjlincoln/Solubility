@@ -1,4 +1,4 @@
-# Solubiltiy Rules / Flame Test Quiz
+# Solubility Rules / Flame Test Quiz
 
 ## Project setup
 ```
