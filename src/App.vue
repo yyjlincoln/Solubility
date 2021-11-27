@@ -429,35 +429,15 @@ export default {
     random(max) {
       return Math.floor(Math.random() * max);
     },
-    getChoices(isIon, aspect) {
-      if (isIon) {
-        let res = [];
-        for (var ionIndex in this.ions) {
-          var ion = this.ions[ionIndex];
-          // console.log(ion[aspect])
-          if (ion[aspect] != undefined && res.includes(ion[aspect]) == false) {
-            // console.log(ion[aspect])
-            res.push(ion[aspect]);
-          }
+    getChoices(array, aspect) {
+      let res = [];
+      for (var index in array) {
+        var obj = array[index];
+        if (obj[aspect] != undefined && res.includes(obj[aspect]) == false) {
+          res.push(obj[aspect]);
         }
-        console.log(res);
-        return res;
-      } else {
-        let res = [];
-        for (var index in this.compounds) {
-          var compound = this.compounds[index];
-          // console.log(ion[aspect])
-          if (
-            compound[aspect] != undefined &&
-            res.includes(String(compound[aspect])) == false
-          ) {
-            // console.log(ion[aspect])
-            res.push(String(compound[aspect]));
-          }
-        }
-        console.log(res);
-        return res;
       }
+      return res;
     },
     shuffle(array) {
       let currentIndex = array.length,
@@ -477,298 +457,149 @@ export default {
       }
       return array;
     },
-    nextQuestion() {
-      var question, answer, choices, actions, x;
-      let mode = this.random(2);
-      if (this.preferredMode == "ions") {
-        mode = 0;
-      } else if (this.preferredMode == "compounds") {
-        mode = 1;
+    showQuestion(question, choices, answer, correctmessage, incorrectmessage) {
+      var x;
+      var actions = [];
+      for (x in choices) {
+        let choice = choices[x];
+        if (choice != answer) {
+          actions.push({
+            title: choice,
+            type: "normal",
+            handler: () => {
+              this.$alert.present(
+                "Incorrect",
+                incorrectmessage,
+                [
+                  {
+                    title: "Next Question",
+                    type: "normal",
+                    handler: () => {
+                      this.nextQuestion();
+                    },
+                  },
+                ],
+                {
+                  defaultAction: 0,
+                }
+              );
+            },
+          });
+        } else {
+          actions.push({
+            title: choice,
+            type: "normal",
+            handler: () => {
+              this.$alert.present(
+                "Correct",
+                correctmessage,
+                [
+                  {
+                    title: "Next Question",
+                    type: "normal",
+                    handler: () => {
+                      this.nextQuestion();
+                    },
+                  },
+                ],
+                {
+                  defaultAction: 0,
+                }
+              );
+            },
+          });
+        }
       }
-      if (mode == 0) {
-        // Ions
-        let obj = this.ions[this.random(this.ions.length)];
-        let aspects = ["solution", "flame"];
-        let aspect = aspects[this.random(2)];
-        switch (aspect) {
-          case "solution":
-            question = "What is the colour of a " + obj.name + " solution?";
-            answer = obj.solution;
-            choices = this.shuffle(this.getChoices(true, aspect));
-            actions = [];
-            for (x in choices) {
-              let choice = choices[x];
-              if (choice != answer) {
-                actions.push({
-                  title: choice,
-                  type: "normal",
-                  handler: () => {
-                    this.$alert.present(
-                      "Incorrect",
-                      "The colour of a " + obj.name + " solution is " + answer,
-                      [
-                        {
-                          title: "Next Question",
-                          type: "normal",
-                          handler: () => {
-                            this.nextQuestion();
-                          },
-                        },
-                      ],
-                      {
-                        defaultAction: 0,
-                      }
-                    );
-                  },
-                });
-              } else {
-                actions.push({
-                  title: choice,
-                  type: "normal",
-                  handler: () => {
-                    this.$alert.present(
-                      "Correct",
-                      "The colour of a " + obj.name + " solution is " + answer,
-                      [
-                        {
-                          title: "Next Question",
-                          type: "normal",
-                          handler: () => {
-                            this.nextQuestion();
-                          },
-                        },
-                      ],
-                      {
-                        defaultAction: 0,
-                      }
-                    );
-                  },
-                });
-              }
-            }
-            actions.push({
-              title: "Skip",
-              type: "destructive",
-              handler: () => {
-                this.nextQuestion();
-              },
-            });
-            this.$alert.present("Question", question, actions);
-            break;
-          case "flame":
-            question =
-              "What colour would be observed in a flame test for " +
-              obj.name +
-              "?";
-            answer = obj.flame;
-            choices = this.shuffle(this.getChoices(true, aspect));
-            actions = [];
-            for (x in choices) {
-              let choice = choices[x];
-              if (choice != answer) {
-                actions.push({
-                  title: choice,
-                  type: "normal",
-                  handler: () => {
-                    this.$alert.present(
-                      "Incorrect",
-                      "The colour of the flame of " +
-                        obj.name +
-                        " should be " +
-                        answer,
-                      [
-                        {
-                          title: "Next Question",
-                          type: "normal",
-                          handler: () => {
-                            this.nextQuestion();
-                          },
-                        },
-                      ],
-                      {
-                        defaultAction: 0,
-                      }
-                    );
-                  },
-                });
-              } else {
-                actions.push({
-                  title: choice,
-                  type: "normal",
-                  handler: () => {
-                    this.$alert.present(
-                      "Correct",
-                      "The colour of the flame of " +
-                        obj.name +
-                        " solution is " +
-                        answer,
-                      [
-                        {
-                          title: "Next Question",
-                          type: "normal",
-                          handler: () => {
-                            this.nextQuestion();
-                          },
-                        },
-                      ],
-                      {
-                        defaultAction: 0,
-                      }
-                    );
-                  },
-                });
-              }
-            }
-            actions.push({
-              title: "Skip",
-              type: "destructive",
-              handler: () => {
-                this.nextQuestion();
-              },
-            });
-            this.$alert.present("Question", question, actions);
-            break;
-        }
-      } else {
-        // Compounds
-        let obj = this.compounds[this.random(this.compounds.length)];
-        let aspects = ["soluble", "colour"];
-        // console.log(aspects);
-        // console.log(aspects);
-        let aspect = aspects[this.random(aspects.length)];
-        console.log(aspect);
-        // console.log(aspect);
-        switch (aspect) {
-          case "soluble":
-            question = obj.name + " is soluble.";
-            answer = String(obj.soluble);
-            choices = this.shuffle(this.getChoices(false, aspect));
-            actions = [];
-            for (x in choices) {
-              let choice = choices[x];
-              if (choice != answer) {
-                actions.push({
-                  title: choice,
-                  type: "normal",
-                  handler: () => {
-                    this.$alert.present(
-                      "Incorrect",
-                      "The answer is " + answer,
-                      [
-                        {
-                          title: "Next Question",
-                          type: "normal",
-                          handler: () => {
-                            this.nextQuestion();
-                          },
-                        },
-                      ],
-                      {
-                        defaultAction: 0,
-                      }
-                    );
-                  },
-                });
-              } else {
-                actions.push({
-                  title: choice,
-                  type: "normal",
-                  handler: () => {
-                    this.$alert.present(
-                      "Correct",
-                      "The answer is " + answer,
-                      [
-                        {
-                          title: "Next Question",
-                          type: "normal",
-                          handler: () => {
-                            this.nextQuestion();
-                          },
-                        },
-                      ],
-                      {
-                        defaultAction: 0,
-                      }
-                    );
-                  },
-                });
-              }
-            }
-            actions.push({
-              title: "Skip",
-              type: "destructive",
-              handler: () => {
-                this.nextQuestion();
-              },
-            });
-            this.$alert.present("Question", question, actions);
-            break;
-          case "colour":
-            question =
-              "What is the colour of " + obj.name + " precipitate, if any?";
-            answer = obj.colour;
-            choices = this.shuffle(this.getChoices(false, aspect));
-            actions = [];
-            for (x in choices) {
-              let choice = choices[x];
-              if (choice != answer) {
-                actions.push({
-                  title: choice,
-                  type: "normal",
-                  handler: () => {
-                    this.$alert.present(
-                      "Incorrect",
-                      "The colour of " + obj.name + " should be: " + answer,
-                      [
-                        {
-                          title: "Next Question",
-                          type: "normal",
-                          handler: () => {
-                            this.nextQuestion();
-                          },
-                        },
-                      ],
-                      {
-                        defaultAction: 0,
-                      }
-                    );
-                  },
-                });
-              } else {
-                actions.push({
-                  title: choice,
-                  type: "normal",
-                  handler: () => {
-                    this.$alert.present(
-                      "Correct",
-                      "The colour of " + obj.name + " is " + answer,
-                      [
-                        {
-                          title: "Next Question",
-                          type: "normal",
-                          handler: () => {
-                            this.nextQuestion();
-                          },
-                        },
-                      ],
-                      {
-                        defaultAction: 0,
-                      }
-                    );
-                  },
-                });
-              }
-            }
-            actions.push({
-              title: "Skip",
-              type: "destructive",
-              handler: () => {
-                this.nextQuestion();
-              },
-            });
-            this.$alert.present("Question", question, actions);
-            break;
-        }
+      actions.push({
+        title: "Skip",
+        type: "destructive",
+        handler: () => {
+          this.nextQuestion();
+        },
+      });
+      this.$alert.present("Question", question, actions);
+    },
+    nextQuestion() {
+      var question, answer, choices, obj, aspects, aspect;
+      var modes = ["ions", "compounds", "cations"];
+      let mode = modes[this.random(2)];
+      if (this.preferredMode != null) {
+        mode = this.preferredMode;
+      }
+      switch (mode) {
+        case "ions":
+          // Ions
+          obj = this.ions[this.random(this.ions.length)];
+          aspects = ["solution", "flame"];
+          aspect = aspects[this.random(2)];
+          switch (aspect) {
+            case "solution":
+              question = "What is the colour of a " + obj.name + " solution?";
+              answer = obj.solution;
+              choices = this.shuffle(this.getChoices(this.ions, aspect));
+              this.showQuestion(
+                question,
+                choices,
+                answer,
+                "That's correct. " +
+                  obj.name +
+                  " is " +
+                  answer +
+                  " in solution",
+                "That's wrong. " + obj.name + " is " + answer + " in solution"
+              );
+              break;
+            case "flame":
+              question =
+                "What colour would be observed in a flame test for " +
+                obj.name +
+                "?";
+              answer = obj.flame;
+              choices = this.shuffle(this.getChoices(this.ions, aspect));
+              this.showQuestion(
+                question,
+                choices,
+                answer,
+                "That's correct, the colour of the flame should be " + answer,
+                "No, the colour of the flame for " +
+                  obj.name +
+                  " should be " +
+                  answer
+              );
+              break;
+          }
+          break;
+        case "compounds":
+          obj = this.compounds[this.random(this.compounds.length)];
+          aspects = ["soluble", "colour"];
+          aspect = aspects[this.random(aspects.length)];
+          switch (aspect) {
+            case "soluble":
+              question = obj.name + " is soluble.";
+              answer = String(obj.soluble);
+              choices = this.shuffle(this.getChoices(this.compounds, aspect));
+              this.showQuestion(
+                question,
+                choices,
+                answer,
+                "Correct. The answer is " + answer,
+                "No, it should be " + answer
+              );
+              break;
+            case "colour":
+              question =
+                "What is the colour of " + obj.name + " if it precipitates?";
+              answer = obj.colour;
+              choices = this.shuffle(this.getChoices(this.compounds, aspect));
+              this.showQuestion(
+                question,
+                choices,
+                answer,
+                "Correct. The colour of " + obj.name + " is " + answer,
+                "No, it should be " + answer
+              );
+              break;
+          }
       }
     },
   },
