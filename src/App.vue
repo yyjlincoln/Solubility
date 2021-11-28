@@ -499,9 +499,27 @@ export default {
         {
           title: "Cation Reactions & Identification",
           type: "normal",
-          handler: () => {
-            this.preferredMode = "cations";
-            this.nextQuestion();
+          handler: (identifier) => {
+            this.$alert.present(
+              "Warning",
+              'Some of the questions in this category may be incorrect or misleading. Those questions will be excluded from the "All" category and we do not recommend you taking this quiz. Do you still want to proceed?',
+              [
+                {
+                  title: "Yes",
+                  type: "destructive",
+                  handler: () => {
+                    this.preferredMode = "cations";
+                    this.$alert.dismiss(identifier, { immediately: true });
+                    this.nextQuestion();
+                  },
+                },
+                {
+                  title: "No",
+                  type: "cancel",
+                },
+              ]
+            );
+            return false;
           },
         },
         {
@@ -627,8 +645,9 @@ export default {
     },
     nextQuestion() {
       var question, answer, choices, obj, aspects, aspect;
-      var modes = ["ions", "compounds", "cations", "anions"];
-      let mode = modes[this.random(4)];
+      // var modes = ["ions", "compounds", "cations", "anions"];
+      var modes = ["ions", "compounds", "anions"];
+      let mode = modes[this.random(3)];
       if (this.preferredMode != null) {
         mode = this.preferredMode;
       }
